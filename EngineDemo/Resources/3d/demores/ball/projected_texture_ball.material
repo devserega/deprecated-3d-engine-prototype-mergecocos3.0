@@ -1,0 +1,43 @@
+material 
+{
+	u_lightColor = 1.0, 0.0, 0.0
+	u_worldViewProjectionMatrix = WORLD_VIEW_PROJECTION_MATRIX
+	u_specularExponent = 2
+	
+	technique 0
+	<
+		channel = transparency
+	>
+	{
+		pass 0
+		{
+			vertexShader = shaders/cubemap.vsh
+			fragmentShader = shaders/cubemap.fsh
+			defines = MAXPOINTLIGHT 1
+
+			samplerCube u_shellTex
+			{
+				path_left	= demores/materialtest/magiclight/LanternF_2.jpg
+				path_right	= demores/materialtest/magiclight/LanternF_1.jpg
+				path_top	= demores/materialtest/magiclight/LanternF_5.jpg
+				path_bottom = demores/materialtest/magiclight/LanternF_6.jpg
+				path_front	= demores/materialtest/magiclight/LanternF_3.jpg
+				path_back	= demores/materialtest/magiclight/LanternF_4.jpg
+					
+				wrapS = MIRROR
+				wrapT = MIRROR
+			}
+
+			renderState 
+			{
+				cullFace = true
+				depthTest = true
+				depthWrite = true
+				blend = true
+				srcBlend = SRC_ALPHA
+				dstBlend = ONE_MINUS_SRC_ALPHA
+			}
+		}
+	}
+}
+
