@@ -1,6 +1,6 @@
 @echo off
 
-echo.this script clean up all temp files (version 2.5)
+echo.this script delete all temp files (version 2.5)
 
 ::--------- delete WIN32 build  temp files ---------------
 :: DEBUG
@@ -29,14 +29,18 @@ echo.&pause&goto:eof
 ::--------------------------------------------------------
 
 :deleteFolder - delete folder with it content
+IF EXIST "%~1" (
 echo.
 echo. Delete folder %~1
 rmdir %~1 /s /q
+)
 goto:eof
 
 :deleteFile - delete file
+IF EXIST "%~1" (
 echo.
 echo. Delete file %~1
 del /s /q %~1 
+)
 goto:eof
 
